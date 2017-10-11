@@ -6,14 +6,35 @@ output:
   html_document:
     keep_md: true
 ---
-Imports the Beers file and the Breweries file and merges them together. 
+
+Sets the working directory so data can be gathered 
+Imports the Beers file and the Breweries file and merges them together.
+
 
 ```{r, echo=TRUE}
-setwd("~/GitHub/SMU/Doing_Data_Science_1/CaseStudy")
-Beers <- read_csv("~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beers.csv")
-Brewies <- read_csv("~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Breweries.csv")
 
-Beer.data<-merge(Beers,Brewies, by.x = c("Brewery_id"), by.y =c("Brew_ID"),all =  FALSE)
-head(Beer.data,6)
-tail(Beer.data,6)
+setwd("~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project")
+
+# DDS Case Study 1
+#imports data and set the tables to an object
+beers_df = read.csv("analysis/Data/Beers.csv")
+breweries_df = read.csv("analysis/Data/Breweries.csv")
+
+# Clean Data, Make the column name Brewery_id same for both data set.
+
+
+colnames(breweries_df)[which(names(breweries_df) == "Brew_ID")] <- "Brewery_ID"
+colnames(breweries_df)[which(names(breweries_df) == "Name")] <- "Brewery_Name"
+
+colnames(beers_df)[which(names(beers_df) == "Brewery_id")] <- "Brewery_ID"
+colnames(beers_df)[which(names(beers_df) == "Name")] <- "Beer_Name"
+```
+
+# 2. Merge beer data with the breweries data. 
+
+```{r, echo=TRUE}
+# 2. Merge beer data with the breweries data. 
+# Print the first 6 observations and the last six observations to check the merged file.
+
+beer_brew_merge = merge(beers_df, breweries_df, by = c("Brewery_ID"))
 ```

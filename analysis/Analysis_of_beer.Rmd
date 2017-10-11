@@ -1,0 +1,78 @@
+---
+title: "Beer_Brew_ analysis"
+author: "Steven Hayden, Thejas Prasad"
+date: "October 10, 2017"
+output: 
+  html_document:
+    keep_md: true
+---
+```{r echo=TRUE}
+install.packages("data.table")
+library("data.table")
+```
+# 3. 
+Report the number of NA's in each column.
+```{r echo=TRUE}
+
+
+colSums(is.na(beer_brew_merge))
+
+```
+
+# 4. 
+Compute the median alcohol content and international bitterness unit for each state. 
+```{r echo=TRUE}
+#changed function from SQL function
+Median.ABV<-median(beer_brew_merge$ABV,na.rm = TRUE)
+Median.IBU<-median(beer_brew_merge$IBU,na.rm=TRUE)
+#sapply(beer_brew_merge$ABV,median,rm.na=TRUE)
+```
+
+
+# 5. 
+Which state has the maximum alcoholic (ABV) beer? 
+```{r echo=TRUE}
+#####################################
+#Thejas  let me know if you okay with this line to retun the state with the max
+beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$ABV,na.rm = TRUE)),"State"]
+
+
+###############################
+
+
+bbm = data.table(beer_brew_merge)
+
+str(bbm)
+
+# na.omit(bbm, cols = "ABV")
+
+max_ABV <- max(bbm[, ABV],na.rm = TRUE)
+
+max(bbm$ABV,na.rm = TRUE)
+
+bbm[ABV == max_ABV,.(State,ABV)]
+
+bbm[ABV == (max(bbm$ABV,na.rm = TRUE)),.(State,ABV)]
+
+
+
+max_ibu = max(bbm[, IBU], na.rm = TRUE)
+
+bbm[IBU == max_ibu, .(State, IBU)]
+```
+Which state has the most bitter (IBU) beer?
+```{r echo=TRUE}
+#####################################
+#Thejas  let me know if you okay with this line to retun the state with the max
+beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$IBU,na.rm = TRUE)),"State"]
+```
+
+
+# 6.
+Summary statistics for the ABV variable
+```{r echo=TRUE}
+summary(beer_brew_merge$ABV, na.rm = TRUE)
+```
+
+
+
