@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#title: \"BeerResearch\"\n#author: \"Steven Hayden, Thejas Prasad\"\n#date: \"October 8, 2017\"\n\n#Sets the working directory so data can be gathered \n#Imports the Beers file and the Breweries file and merges them together.\n\nsetwd(\"~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project\")\n\n# DDS Case Study 1\n#imports data and set the tables to an object\nbeers_df = read.csv(\"analysis/Data/Beers.csv\")\nbreweries_df = read.csv(\"analysis/Data/Breweries.csv\")\n\n# Clean Data, Make the column name Brewery_id same for both data set.\n\ncolnames(breweries_df)[which(names(breweries_df) == \"Brew_ID\")] <- \"Brewery_ID\"\ncolnames(breweries_df)[which(names(breweries_df) == \"Name\")] <- \"Brewery_Name\"\n\ncolnames(beers_df)[which(names(beers_df) == \"Brewery_id\")] <- \"Brewery_ID\"\ncolnames(beers_df)[which(names(beers_df) == \"Name\")] <- \"Beer_Name\"\n\n# 2. Merge beer data with the breweries data. \n\n```{r, echo=TRUE}\n\n\nbeer_brew_merge = merge(beers_df, breweries_df, by = c(\"Brewery_ID\"))\ntail(beer_brew_merge)\n```\n\n\n#Print the first 6 observations and the last 6 observations to check the merged file.\n```{r echo=TRUE}\n\nhead(beer_brew_merge)\n\ntail(beer_brew_merge)\n```\n",
+    "created" : 1507779546601.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2989283510",
+    "id" : "CF18487B",
+    "lastKnownWriteTime" : 8243106027910292597,
+    "last_content_update" : 1507780919146,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

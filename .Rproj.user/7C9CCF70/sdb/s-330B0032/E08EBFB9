@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Homework 3\"\nauthor: \"Steven Hayden\"\ndate: \"September 17, 2017\"\noutput: \n  html_document:\n    keep_md: true\n---\n# Question 1\n\n###Getting data from git hub using Git Bash.\nSHayden@WABELHLP0694549 MINGW64 ~\n$ cd 'documents/SMU/Doing Data science 1/Unit 3'\n\nSHayden@WABELHLP0694549 MINGW64 ~/documents/SMU/Doing Data science 1/Unit 3\n\nSHayden@WABELHLP0694549 MINGW64 ~/documents/SMU/Doing Data science 1/Unit 3\n$ mkdir Homework 3\n\nSHayden@WABELHLP0694549 MINGW64 ~/documents/SMU/Doing Data science 1/Unit 3\n$ ls -1\n3/\nAssignment03.pdf\nHomework/\nsleep_data_01.csv\n'unit 3 break out.R'\n\nSHayden@WABELHLP0694549 MINGW64 ~/documents/SMU/Doing Data science 1/Unit 3\n$ cd Homework\n\n\nSHayden@WABELHLP0694549 MINGW64 ~/documents/SMU/Doing Data science 1/Unit 3\n$ git clone https://github.com/caesar0301/awesome-public-datasets.git\nCloning into 'awesome-public-datasets'...\nremote: Counting objects: 1317, done.\nremote: Total 1317 (delta 0), reused 0 (delta 0), pack-reused 1317\nReceiving objects: 100% (1317/1317), 421.64 KiB | 3.40 MiB/s, done.\nResolving deltas: 100% (763/763), done.\n\n# Question 2\n\n pull in data that was downloaded from get hub into a data frame.\n\n```{r, echo=TRUE}\n#setwd(\"C:/Users/shayden/Documents/SMU\")\ndf<-read.csv(\"~/SMU/Doing data science 1/Unit 3/Homework/awesome-public-datasets/titanic.csv\")\n```\n Creats a bar graph how many men and woman were on board.\n```{r, echo=TRUE}\nFemale.count<-length(df$Sex[df$Sex==\"female\"])\nMale.count<-length(df$Sex[df$Sex==\"male\"])\nnames(Female.count)<-\"Female Count\"\nnames(Male.count)<- \"Male Count\"\n\n\nbarplot(c(Male.count,Female.count),width = 2,xlab='Gender', ylab='number of passengers', main = 'Male vs female passegers')\n```\n\n calculates the mean of age, fare, and survival.\n\n```{r, echo=TRUE}\n\ndf.no.na<-data.frame(df[(!is.na(df$Age)),c(\"Age\",\"Fare\",\"Survived\")])\nmean_list <- sapply(df.no.na, mean, rm.na=TRUE)\nmean_list\n\n```\n# Question 3\n\npulls sleep data in and sets it to a Variable\n```{r, echo=TRUE}\n\nsleep.df<- read.csv(\"~/SMU/Doing data science 1/Unit 3/sleep_data_01.csv\")\n```\nCreates Report funtion \n```{r, echo=TRUE}\nreport.funtion<-function(Age,Duration,RSES){\n#Creats objects for caculations\nMed.Age<-median(Age,na.rm = TRUE)\nMin.dur<-min(Duration,na.rm = TRUE)\nMax.dur<-max(Duration,na.rm = TRUE)\nSD<-sd(RSES,na.rm = TRUE)\nRange.dur<-Max.dur-Min.dur\n\n#Puts together objects into one DF and prits with rounding\nReport<-data.frame(Med.Age/5,mean(RSES,na.rm = TRUE)/5,SD/5,Range.dur)\nnames(Report)<-c(\"MedianAge\",\"SelfEsteem\",\"SE_SD\",\"DurationRange\")\nprint(Report, didgets=2)\n}\n```\n\n\ncalls report function \n```{r, echo=TRUE}\nreport.funtion(sleep.df$Age,sleep.df$Duration,sleep.df$RSES)\n```",
+    "created" : 1507782417402.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2390515912",
+    "id" : "E08EBFB9",
+    "lastKnownWriteTime" : 1507602105,
+    "last_content_update" : 1507783536577,
+    "path" : "~/SMU/Doing data science 1/Unit 3/Homework/Steven Hayden Homework3.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

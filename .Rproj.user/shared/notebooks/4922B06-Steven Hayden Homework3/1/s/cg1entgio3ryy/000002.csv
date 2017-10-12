@@ -1,0 +1,5 @@
+"0","Female.count<-length(df$Sex[df$Sex==""female""])"
+"0","Male.count<-length(df$Sex[df$Sex==""male""])"
+"0","names(Female.count)<-""Female Count"""
+"0","names(Male.count)<- ""Male Count"""
+"0","barplot(c(Male.count,Female.count),width = 2,xlab='Gender', ylab='number of passengers', main = 'Male vs female passegers')"

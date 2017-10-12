@@ -1,0 +1,2 @@
+"0","#setwd(""C:/Users/shayden/Documents/SMU"")"
+"0","df<-read.csv(""~/SMU/Doing data science 1/Unit 3/Homework/awesome-public-datasets/titanic.csv"")"

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"HomeWork 4\"\nauthor: \"Steven Hayden\"\ndate: \"September 21, 2017\"\noutput: \n  html_document:\n    keep_md: true\n---\n\n# Question 1\n\n###Instalation of requred packages.\n\n```{r, echo=TRUE}\n\n# use install.packages(\"fivethirtyeight\") to install pakace befor running code.\nlibrary(fivethirtyeight)\n```\n\n###Gets dataset of college_recent_grads\nData can be found in the below URL.\nhttp://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/\n\n```{r, echo=TRUE}\ndata(package = \"fivethirtyeight\")\ndf<-college_recent_grads\nvignette(\"fivethirtyeight\", package = \"fivethirtyeight\")\n\n```\n\n\n###Gives Dimensions of dataframe.\n```{r, echo=TRUE}\ndf.dimension <-dim(df)\nnames(df.dimension)<-c(\"Rows\",\"Columns\")\ndf.dimension\n```\n\n# Question 2\n\n###Gives names of the columns in the dataframe .\n```{r, echo=TRUE}\n#names(df)\n#ncol(df)\nmajor_count<-tapply(df$major_category,df$major_category,length)\n\n\n\n#par(les=2) \npar(mar=c(5.1, 17, 4.1, 2.1), mgp=c(15, 1, 0), las=2)\nbarplot(major_count,length(major_count),horiz = TRUE, main = \"count of majors by category\",xlab = \"Count\",ylab = \"Category\",col = c(\"lightblue\", \"mistyrose\", \"lightcyan\",\n                \"lavender\", \"cornsilk\"))\n```\n\nSaves the file\n\n```{r, echo=TRUE}\nsetwd(\"C:/Users/shayden/Documents/SMU/Doing data science 1/Unit 4/Homework\")\nwrite.csv(df, file = \"fivethirtyeight\",row.names=FALSE)\n\n```\n\n#Question 3\n\n###link to my repository \n\nhttps://github.com/skhayden/SMU-MSD-homework.git\n\n\n\n",
+    "created" : 1507783609869.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4294284438",
+    "id" : "8943C13A",
+    "lastKnownWriteTime" : 1506486094,
+    "last_content_update" : 1506486094,
+    "path" : "~/SMU/Doing data science 1/Unit 4/Homework/Steven Hayden Homework4.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

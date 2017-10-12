@@ -1,0 +1,359 @@
+"0","# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic"
+"0","# content? Draw a scatter plot."
+"0","# You are welcome to use the ggplot2 library for graphs. Please ignore missing values in"
+"0","# your analysis. Make your best judgment of a relationship and EXPLAIN your answer."
+"0","#import data"
+"0","# Data Frame -> Low = 1, Low-Medium = 2, Medium-High = 3, High = 4"
+"0","df1 = data.frame(beer_brew_merge, na.rm = TRUE)"
+"0","#Linear reg"
+"0","regressor = lm(formula = IBU ~ ABV, data=df1 )"
+"0","#predict"
+"0","y_pred = predict(regressor, newdata = df1 )"
+"0","#ggplot"
+"0","install.packages(""ggplot2"",dependencies = TRUE)"
+"2","Installing package into ‘C:/Users/shayden/Documents/R/win-library/3.4’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependencies ‘colorspace’, ‘checkmate’, ‘htmlwidgets’, ‘RColorBrewer’, ‘dichromat’, ‘munsell’, ‘labeling’, ‘viridisLite’, ‘rex’, ‘withr’, ‘Formula’, ‘latticeExtra’, ‘acepack’, ‘gridExtra’, ‘htmlTable’, ‘viridis’, ‘SparseM’, ‘MatrixModels’, ‘gdtools’, ‘gtable’, ‘scales’, ‘lazyeval’, ‘covr’, ‘ggplot2movies’, ‘hexbin’, ‘Hmisc’, ‘mapproj’, ‘maps’, ‘maptools’, ‘quantreg’, ‘svglite’
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/colorspace_1.3-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 447151 bytes (436 KB)
+"
+"2","downloaded 436 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/checkmate_1.8.4.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 631170 bytes (616 KB)
+"
+"2","downloaded 616 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/htmlwidgets_0.9.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 851977 bytes (832 KB)
+"
+"2","downloaded 832 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/RColorBrewer_1.1-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 26979 bytes (26 KB)
+"
+"2","downloaded 26 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/dichromat_2.0-0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 147934 bytes (144 KB)
+"
+"2","downloaded 144 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/munsell_0.4.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 134284 bytes (131 KB)
+"
+"2","downloaded 131 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/labeling_0.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 41095 bytes (40 KB)
+"
+"2","downloaded 40 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/viridisLite_0.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 57848 bytes (56 KB)
+"
+"2","downloaded 56 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/rex_1.1.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 88382 bytes (86 KB)
+"
+"2","downloaded 86 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/withr_2.0.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 59333 bytes (57 KB)
+"
+"2","downloaded 57 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/Formula_1.2-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 164600 bytes (160 KB)
+"
+"2","downloaded 160 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/latticeExtra_0.6-28.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2069557 bytes (2.0 MB)
+"
+"2","downloaded 2.0 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/acepack_1.4.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 91516 bytes (89 KB)
+"
+"2","downloaded 89 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/gridExtra_2.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1084695 bytes (1.0 MB)
+"
+"2","downloaded 1.0 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/htmlTable_1.9.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 223570 bytes (218 KB)
+"
+"2","downloaded 218 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/viridis_0.4.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1741484 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/SparseM_1.77.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 968526 bytes (945 KB)
+"
+"2","downloaded 945 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/MatrixModels_0.4-1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 202836 bytes (198 KB)
+"
+"2","downloaded 198 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/gdtools_0.1.6.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3426948 bytes (3.3 MB)
+"
+"2","downloaded 3.3 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/gtable_0.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 58162 bytes (56 KB)
+"
+"2","downloaded 56 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/scales_0.5.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 695738 bytes (679 KB)
+"
+"2","downloaded 679 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/lazyeval_0.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 140053 bytes (136 KB)
+"
+"2","downloaded 136 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/covr_3.0.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 117995 bytes (115 KB)
+"
+"2","downloaded 115 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/ggplot2movies_0.0.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1250506 bytes (1.2 MB)
+"
+"2","downloaded 1.2 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/hexbin_1.27.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 742982 bytes (725 KB)
+"
+"2","downloaded 725 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/Hmisc_4.0-3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1791904 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/mapproj_1.2-5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 85442 bytes (83 KB)
+"
+"2","downloaded 83 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/maps_3.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3631625 bytes (3.5 MB)
+"
+"2","downloaded 3.5 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/maptools_0.9-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1823568 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/quantreg_5.33.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2106147 bytes (2.0 MB)
+"
+"2","downloaded 2.0 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/svglite_1.2.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 644517 bytes (629 KB)
+"
+"2","downloaded 629 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.4/ggplot2_2.2.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2784021 bytes (2.7 MB)
+"
+"2","downloaded 2.7 MB
+
+"
+"1","package â€˜colorspaceâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜checkmateâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜htmlwidgetsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜RColorBrewerâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜dichromatâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜munsellâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜labelingâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜viridisLiteâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜rexâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜withrâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜Formulaâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜latticeExtraâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜acepackâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜gridExtraâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜htmlTableâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜viridisâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜SparseMâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜MatrixModelsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜gdtoolsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜gtableâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜scalesâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜lazyevalâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜covrâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜ggplot2moviesâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜hexbinâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜Hmiscâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜mapprojâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜mapsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜maptoolsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜quantregâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜svgliteâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜ggplot2â€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1","The downloaded binary packages are in
+	C:\Users\shayden\AppData\Local\Temp\RtmpqQ8X3w\downloaded_packages"
+"1","
+"
+"0","library(ggplot2)"
+"2","package ‘ggplot2’ was built under R version 3.4.2"
+"0","#install.packages(""gtable"")"
+"0","#library(gtable)"
+"0","#install.packages(""labeling"")"
+"0","#library(labeling)"
+"0","ggplot() +"
+"0","  geom_point(aes(x= df1$ABV, y= df1$IBU),"
+"0","             colour='red', na.rm = TRUE,size = .75)+"
+"0","  geom_line(aes(x= df1$ABV,y= predict(regressor, newdata = df1 )),"
+"0","            colour='blue',na.rm = TRUE)+"
+"0","  ggtitle('ABV vs IBU')+"
+"0","  xlab('ABV')+"
+"0","  ylab('IBU')"
