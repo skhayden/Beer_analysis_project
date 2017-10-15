@@ -1,0 +1,4 @@
+"0","#Alternitive methode"
+"0","bbm = data.table(beer_brew_merge)"
+"0","max_ibu = max(bbm[, IBU], na.rm = TRUE)"
+"0","bbm[IBU == max_ibu, .(State, IBU)]"

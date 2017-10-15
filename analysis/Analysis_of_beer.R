@@ -1,30 +1,24 @@
----
-title: "Beer_Brew_ analysis"
-author: "Steven Hayden, Thejas Prasad"
-date: "October 10, 2017"
-output: 
-  html_document:
-    keep_md: true
----
 
-install.packages("sqldf")
+#title: "Beer_Brew_ analysis"
+#author: "Steven Hayden, Thejas Prasad"
+#date: "October 10, 2017"
+
+
+#install.packages("sqldf")
 library("sqldf")
-```{r echo=TRUE}
-#install.packages("data.table")
-#library("data.table")
-```
 
-Report the number of NA's in each column.
-```{r echo=TRUE}
+#install.packages("data.table")
+library("data.table")
+
+
 #3
+#Report the number of NA's in each column.
 
 colSums(is.na(beer_brew_merge))
 
-```
 
+#Compute the median alcohol content and international bitterness unit for each state. 
 
-Compute the median alcohol content and international bitterness unit for each state. 
-```{r echo=TRUE}
 
 
 # 4. 
@@ -33,21 +27,19 @@ ABV_IBU_Median = (sqldf("SELECT median(ABV) as ABV_Median,median(IBU) as IBU_Med
 
 
 
-```
 
 
- 
-Which state has the maximum alcoholic (ABV) beer? 
-```{r echo=TRUE}
+#Which state has the maximum alcoholic (ABV) beer? 
+
 # 5. 
 #Finds the max ABV and the state Associated with it
 beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$ABV,na.rm = TRUE)),"State"]
 
-```
 
 
-Which state has the most bitter (IBU) beer?
-```{r echo=TRUE}
+
+#Which state has the most bitter (IBU) beer?
+
 #Alternitive methode
 
 bbm = data.table(beer_brew_merge)
@@ -55,20 +47,18 @@ bbm = data.table(beer_brew_merge)
 max_ibu = max(bbm[, IBU], na.rm = TRUE)
 
 bbm[IBU == max_ibu, .(State, IBU)]
-```
 
 
 
+#Summary statistics for the ABV variable
 
-Summary statistics for the ABV variable
-```{r echo=TRUE}
 # 6. Summary statistics for the ABV variable
 summary(beer_brew_merge$ABV, na.rm = TRUE)
-```
 
-Relationship between bitterness and alcohol
 
-```{r echo=TRUE}
+#Relationship between bitterness and alcohol
+
+
 
 # 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic
 # content? Draw a scatter plot.

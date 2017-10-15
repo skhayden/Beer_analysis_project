@@ -1,0 +1,2 @@
+"0","# Print the first 6 observations and the last six observations to check the merged file."
+"0","head(beer_brew_merge)"

@@ -1,0 +1,4 @@
+"0","# 2. Merge beer data with the breweries data. "
+"0","# Print the first 6 observations and the last six observations to check the merged file."
+"0","beer_brew_merge = merge(beers_df, breweries_df, by = c(""Brewery_ID""))"
+"0","tail(beer_brew_merge)"

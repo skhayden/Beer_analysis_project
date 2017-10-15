@@ -1,0 +1,3 @@
+"0","# 4. "
+"0","#Uses SQL to group data by state (like the tapply functtion) and provied the Median ABV and Median IBU"
+"0","ABV_IBU_Median = (sqldf(""SELECT median(ABV) as ABV_Median,median(IBU) as IBU_Median, State FROM beer_brew_merge GROUP By State""))"
