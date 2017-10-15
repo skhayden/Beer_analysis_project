@@ -10,8 +10,8 @@ output:
 install.packages("sqldf")
 library("sqldf")
 ```{r echo=TRUE}
-install.packages("data.table")
-library("data.table")
+#install.packages("data.table")
+#library("data.table")
 ```
 
 Report the number of NA's in each column.
@@ -33,27 +33,6 @@ ABV_IBU_Median = (sqldf("SELECT median(ABV) as ABV_Median,median(IBU) as IBU_Med
 
 
 
-
-par(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)
-barplot( ABV_IBU_Median$ABV_Median,col=c("darkblue"),space = 1,
-     main="ABV Median vs State", # Title
-     xlab="ABV Median" ,         # xaxis label 
-     names.arg = ABV_IBU_Median$State) 
-
-barplot( ABV_IBU_Median$IBU_Median,col=c("red"),space = 1,
-         main="IBU Median vs State", # Title
-         xlab="IBU Median",          # xaxis label 
-         names.arg = ABV_IBU_Median$State)
-
-
-
-
-
-
-#par(les=2) 
-par(mar=c(5.1, 17, 4.1, 2.1), mgp=c(15, 1, 0), las=2)
-barplot(major_count,length(major_count),horiz = TRUE, main = "count of majors by category",xlab = "Count",ylab = "Category",col = c("lightblue", "mistyrose", "lightcyan",
-                "lavender", "cornsilk"))
 ```
 
 
@@ -87,7 +66,7 @@ Summary statistics for the ABV variable
 summary(beer_brew_merge$ABV, na.rm = TRUE)
 ```
 
-
+Relationship between bitterness and alcohol
 
 ```{r echo=TRUE}
 
@@ -115,29 +94,4 @@ regressor = lm(formula = IBU ~ ABV, data=df1 )
 y_pred = predict(regressor, newdata = df1 )
 
 
-#ggplot
-install.packages("ggplot2",dependencies = TRUE)
-library(ggplot2)
-#install.packages("gtable")
-#library(gtable)
-#install.packages("labeling")
-#library(labeling)
 
-
-ggplot() +
-  geom_point(aes(x= df1$ABV, y= df1$IBU),
-             colour='red', na.rm = TRUE,size = .75)+
-  geom_line(aes(x= df1$ABV,y= predict(regressor, newdata = df1 )),
-            colour='blue',na.rm = TRUE)+
-  ggtitle('ABV vs IBU')+
-  xlab('ABV')+
-  ylab('IBU')
-
-?ggplot
-
-# Yes there is a linear correlation between alcholol content and the bitterness of the beer
-# as the alcholol content increases and the bitterness of the beer also increases.
-
-#----Done---
-
-```

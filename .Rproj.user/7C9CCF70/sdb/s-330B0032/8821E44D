@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Presentation\"\nauthor: \"Steven Hayden, Thejas Prasad\"\ndate: \"October 15, 2017\"\noutput: \n  html_document:\n    keep_md: true\n\n---\nPlots Median alcohol \n```{r setup, include=FALSE}\n\n#sets margins for graph\npar(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)\n#generates graph\nbarplot( ABV_IBU_Median$ABV_Median,col=c(\"darkblue\"),space = 1,\n     main=\"ABV Median vs State\", # Title\n     xlab=\"ABV Median\" ,         # xaxis label \n     names.arg = ABV_IBU_Median$State) \n\n\n#sets margins for graph\npar(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)\n#generates graph\nbarplot( ABV_IBU_Median$IBU_Median,col=c(\"red\"),space = 1,\n         main=\"IBU Median vs State\", # Title\n         xlab=\"IBU Median\",          # xaxis label \n         names.arg = ABV_IBU_Median$State)\n\n```\n\n#Relationship between bitterness and alcohol\n```{r setup, include=FALSE}\n# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic\n\n\n\n\n#import data\n\n\n\ndf1 = data.frame(beer_brew_merge, na.rm = TRUE)\n\n\n#ggplot\ninstall.packages(\"ggplot2\",dependencies = TRUE)\nlibrary(ggplot2)\n\n\n\nggplot() +\n  geom_point(aes(x= df1$ABV, y= df1$IBU),\n             colour='red', na.rm = TRUE,size = .75)+\n  geom_line(aes(x= df1$ABV,y= predict(regressor, newdata = df1 )),\n            colour='blue',na.rm = TRUE)+\n  ggtitle('ABV vs IBU')+\n  xlab('ABV')+\n  ylab('IBU')\n\n?ggplot\n\n# Yes there is a linear correlation between alcholol content and the bitterness of the beer\n# as the alcholol content increases and the bitterness of the beer also increases.\n\n#----Done---\n\n```\n\n",
+    "created" : 1508051866863.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "592725932",
+    "id" : "8821E44D",
+    "lastKnownWriteTime" : 1508053157,
+    "last_content_update" : 1508053157178,
+    "path" : "~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/Presentation/Beer Presentation.Rmd",
+    "project_path" : "Presentation/Beer Presentation.Rmd",
+    "properties" : {
+        "last_setup_crc32" : "B0E652CCc4e2d899",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,9 +1,69 @@
 ---
 title: "Presentation"
 author: "Steven Hayden, Thejas Prasad"
-date: "October 11, 2017"
+date: "October 15, 2017"
 output: 
   html_document:
     keep_md: true
+
 ---
+Plots Median alcohol 
+```{r setup, include=FALSE}
+
+#sets margins for graph
+par(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)
+#generates graph
+barplot( ABV_IBU_Median$ABV_Median,col=c("darkblue"),space = 1,
+     main="ABV Median vs State", # Title
+     xlab="ABV Median" ,         # xaxis label 
+     names.arg = ABV_IBU_Median$State) 
+
+
+#sets margins for graph
+par(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)
+#generates graph
+barplot( ABV_IBU_Median$IBU_Median,col=c("red"),space = 1,
+         main="IBU Median vs State", # Title
+         xlab="IBU Median",          # xaxis label 
+         names.arg = ABV_IBU_Median$State)
+
+```
+
+#Relationship between bitterness and alcohol
+```{r setup, include=FALSE}
+# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic
+
+
+
+
+#import data
+
+
+
+df1 = data.frame(beer_brew_merge, na.rm = TRUE)
+
+
+#ggplot
+install.packages("ggplot2",dependencies = TRUE)
+library(ggplot2)
+
+
+
+ggplot() +
+  geom_point(aes(x= df1$ABV, y= df1$IBU),
+             colour='red', na.rm = TRUE,size = .75)+
+  geom_line(aes(x= df1$ABV,y= predict(regressor, newdata = df1 )),
+            colour='blue',na.rm = TRUE)+
+  ggtitle('ABV vs IBU')+
+  xlab('ABV')+
+  ylab('IBU')
+
+?ggplot
+
+# Yes there is a linear correlation between alcholol content and the bitterness of the beer
+# as the alcholol content increases and the bitterness of the beer also increases.
+
+#----Done---
+
+```
 
