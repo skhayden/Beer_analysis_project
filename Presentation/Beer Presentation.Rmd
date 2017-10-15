@@ -10,6 +10,14 @@ output:
 Plots Median alcohol 
 ```{r setup, include=FALSE}
 
+
+setwd("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project")
+source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/clean_TestFile.R")
+
+
+
+
+
 #sets margins for graph
 par(mar=c(5, 3, 4.1, 0), mgp=c(3, 1, 0), las=2)
 #generates graph
