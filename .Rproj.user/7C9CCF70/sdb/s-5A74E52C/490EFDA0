@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n#title: \"Beer_Brew_ analysis\"\n#author: \"Steven Hayden, Thejas Prasad\"\n#date: \"October 10, 2017\"\n\n\n#install.packages(\"sqldf\")\nlibrary(\"sqldf\")\n\n#install.packages(\"data.table\")\nlibrary(\"data.table\")\n\n\n#Report the number of NA's in each column.\n\ncolSums(is.na(beer_brew_merge))\n\n\n#Compute the median alcohol content and international bitterness unit for each state. \n#Uses SQL to group data by state (like the tapply functtion) and provied the Median ABV and Median IBU\n\nABV_IBU_Median = (sqldf(\"SELECT median(ABV) as ABV_Median,median(IBU) as IBU_Median, State FROM beer_brew_merge GROUP By State\"))\n\n\n\n#Finds the max ABV and the state Associated with it using Data Table.\n#beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$ABV,na.rm = TRUE)),\"State\"]\n\nbbm = data.table(beer_brew_merge)\nbbm[ABV == (max(bbm$ABV,na.rm = TRUE)),.(State,ABV)]\n\n#state has the most bitter (IBU) beer\n\n\nmax_ibu = max(bbm[, IBU], na.rm = TRUE)\nbbm[IBU == max_ibu, .(State, IBU)]\n\n\n#Summary statistics for the ABV variable\n\nsummary(beer_brew_merge$ABV, na.rm = TRUE)\n\n\n# Relationship between bitterness and alcohol\n# Validate if there is an apparent relationship between the bitterness of the beer and its alcoholic\n# content.\n\n#Assign beer_brew_merge data frame to df1 data frame.\ndf1 = data.frame(beer_brew_merge, na.rm = TRUE)\n\n#Linear reg - Creates a regressor.\n\nregressor = lm(formula = IBU ~ ABV, data=df1 )\n\n#Creates a predictor vriable.\ny_pred = predict(regressor, newdata = df1 )\n\n# Based on the above variables plots will be generated in the Presentation file.\n\n# End of File",
+    "created" : 1508128817385.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3671002114",
+    "id" : "490EFDA0",
+    "lastKnownWriteTime" : 1508128686,
+    "last_content_update" : 1508128686,
+    "path" : "~/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Analysis_of_beer.R",
+    "project_path" : "analysis/Analysis_of_beer.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
