@@ -11,77 +11,50 @@ library("sqldf")
 library("data.table")
 
 
-#3
 #Report the number of NA's in each column.
 
 colSums(is.na(beer_brew_merge))
 
 
 #Compute the median alcohol content and international bitterness unit for each state. 
-
-
-
-# 4. 
 #Uses SQL to group data by state (like the tapply functtion) and provied the Median ABV and Median IBU
+
 ABV_IBU_Median = (sqldf("SELECT median(ABV) as ABV_Median,median(IBU) as IBU_Median, State FROM beer_brew_merge GROUP By State"))
 
 
 
-
-
-#Which state has the maximum alcoholic (ABV) beer? 
-
-# 5. 
-#Finds the max ABV and the state Associated with it
-beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$ABV,na.rm = TRUE)),"State"]
-
-
-
-
-#Which state has the most bitter (IBU) beer?
-
-#Alternitive methode
+#Finds the max ABV and the state Associated with it using Data Table.
+#beer_brew_merge[which(beer_brew_merge$ABV==max(beer_brew_merge$ABV,na.rm = TRUE)),"State"]
 
 bbm = data.table(beer_brew_merge)
+bbm[ABV == (max(bbm$ABV,na.rm = TRUE)),.(State,ABV)]
+
+#state has the most bitter (IBU) beer
+
 
 max_ibu = max(bbm[, IBU], na.rm = TRUE)
-
 bbm[IBU == max_ibu, .(State, IBU)]
-
 
 
 #Summary statistics for the ABV variable
 
-# 6. Summary statistics for the ABV variable
 summary(beer_brew_merge$ABV, na.rm = TRUE)
 
 
-#Relationship between bitterness and alcohol
+# Relationship between bitterness and alcohol
+# Validate if there is an apparent relationship between the bitterness of the beer and its alcoholic
+# content.
 
-
-
-# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic
-# content? Draw a scatter plot.
-# You are welcome to use the ggplot2 library for graphs. Please ignore missing values in
-# your analysis. Make your best judgment of a relationship and EXPLAIN your answer.
-
-
-
-#import data
-
-
-# Data Frame -> Low = 1, Low-Medium = 2, Medium-High = 3, High = 4
-
+#Assign beer_brew_merge data frame to df1 data frame.
 df1 = data.frame(beer_brew_merge, na.rm = TRUE)
 
-
-#Linear reg
+#Linear reg - Creates a regressor.
 
 regressor = lm(formula = IBU ~ ABV, data=df1 )
 
-
-#predict
+#Creates a predictor vriable.
 y_pred = predict(regressor, newdata = df1 )
 
+# Based on the above variables plots will be generated in the Presentation file.
 
-
+# End of File
