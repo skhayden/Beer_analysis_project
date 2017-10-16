@@ -39,6 +39,8 @@ The second R script is where all the analyses takes place. The median ABV and IB
 source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Analysis_of_beer.R")
 ```
 
+# Alcohol Content Analysis
+Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels.
 
 ```{r echo=TRUE}
 summary(beer_brew_merge$ABV, na.rm = TRUE)
@@ -72,24 +74,16 @@ barplot( ABV_IBU_Median$IBU_Median,col=c("red"),space = 1,
 
 ```
 
-#Relationship between bitterness and alcohol
+# Analysis of Relationship between Bitterness vs Alcohol Content
+To analyze if there is any linear correlation between bitterness and alcohol content in the beers, we performed a Linear Regression Analysis on the data set using one of the Machine Learing techniques available in R. For this analysis we created a regressor based on the bitterness and alcohol content data provided in the dataset. Then used this regressor to predict the pattern or behaviour of the relationship between bitterness and alcohol content in the beers. It was then observed that there exits a positive linear correlation between alcholol content and the bitterness, i.e as the alcholol content increases the bitterness of the beer also increases. Using all the information obtained from the regression model we have visualized the linear correlationship of Bitterness vs Alcohol Content in a graphical format.
+
 ```{r echo=TRUE}
-# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic
-
-
-
-
-#import data
-
-
 
 df1 = data.frame(beer_brew_merge, na.rm = TRUE)
-
 
 #ggplot
 #install.packages("ggplot2",dependencies = TRUE)
 library(ggplot2)
-
 
 
 ggplot() +
@@ -101,12 +95,6 @@ ggplot() +
   xlab('ABV')+
   ylab('IBU')
 
-
-
-# Yes there is a linear correlation between alcholol content and the bitterness of the beer
-# as the alcholol content increases and the bitterness of the beer also increases.
-
-#----Done---
 
 ```
 #Conclusion
