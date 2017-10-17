@@ -17,8 +17,9 @@ The first R script combines the two files provide together. It does this by stor
 ```{r echo=TRUE}
 setwd(getwd()) 
 
+
 #runs script to clean data and merge the data the brewery logistics and beer characteristics data together.
-source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Data/Beer_data_Cleaner.R")
+source("<......Insert the local file path.....>/Beer analysis project/analysis/Data/Beer_data_Cleaner.R")
 ```
 
 #Data 
@@ -26,7 +27,6 @@ The data contains current characteristics of beers and their breweries across th
 ```{r echo=TRUE}
 str(beer_brew_merge)
 ```
-
 
 The second R script is where all the analyses takes place. The median ABV and IBU by state are calculated in this scrip along with their respected max. This is where the relationship between ABV and IBU is identified as well. All these calculated objects will be later used to present the findings in a more readable way, such as graphs. 
 
@@ -36,10 +36,17 @@ The second R script is where all the analyses takes place. The median ABV and IB
 #Finds the state with the maximum alcoholic (ABV) beer.
 #Finds the state with the most bitter beer (IBU).
 #analysis the relationship between ABV and IBU and stores it into the regressor varible. 
-source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Analysis_of_beer.R")
+source("<......Insert the local file path.....>/Beer analysis project/analysis/Analysis_of_beer.R")
 ```
 
-# Alcohol Content Analysis
+#Data Analysis / Descriptions
+During the data analysis these are some of the key statistis observed -
+The state with max alcohol content (0.128) is CO
+The state which has the most bitter beer (138) is OR
+The median ABV and IBU by state can be found in the data frame ABV_IBU_Median
+The original data set provided had some NA's in couple of columns, there were 62 NA's in ABV couln and 1005 NA's in IBU cloumn.
+
+#Alcohol Content Analysis
 Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels.
 
 ```{r echo=TRUE}
@@ -74,7 +81,7 @@ barplot( ABV_IBU_Median$IBU_Median,col=c("red"),space = 1,
 
 ```
 
-# Analysis of Relationship between Bitterness vs Alcohol Content
+#Analysis of Relationship between Bitterness vs Alcohol Content
 To analyze if there is any linear correlation between bitterness and alcohol content in the beers, we performed a Linear Regression Analysis on the data set using one of the Machine Learing techniques available in R. For this analysis we created a regressor based on the bitterness and alcohol content data provided in the dataset. Then used this regressor to predict the pattern or behaviour of the relationship between bitterness and alcohol content in the beers. It was then observed that there exits a positive linear correlation between alcholol content and the bitterness, i.e as the alcholol content increases the bitterness of the beer also increases. Using all the information obtained from the regression model we have visualized the linear correlationship of Bitterness vs Alcohol Content in a graphical format.
 
 ```{r echo=TRUE}
