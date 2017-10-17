@@ -47,7 +47,7 @@ The median ABV and IBU by state can be found in the data frame ABV_IBU_Median
 The original data set provided had some NA's in couple of columns, there were 62 NA's in ABV couln and 1005 NA's in IBU cloumn.
 
 #Alcohol Content Analysis
-Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels. We had to ommit 62 NA's in this ABV column to genrate the summary.
+Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels. We had to ommit 62 NA's in this ABV column to generate the summary.
 
 ```{r echo=TRUE}
 #Returns the summary statistics on ABV
