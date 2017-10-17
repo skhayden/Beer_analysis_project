@@ -1,4 +1,0 @@
-"0","setwd(getwd()) "
-"0","#runs script to clean data and merge the data the brewery logistics and beer characteristics data together."
-"0","source(""C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Data/Beer_data_Cleaner.R"")"
-"2","The working directory was changed to C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the the working directory for notebook chunks."

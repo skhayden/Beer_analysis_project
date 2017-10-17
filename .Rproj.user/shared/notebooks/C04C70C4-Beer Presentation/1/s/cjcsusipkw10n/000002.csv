@@ -3,4 +3,5 @@
 "0","#Finds the state with the maximum alcoholic (ABV) beer."
 "0","#Finds the state with the most bitter beer (IBU)."
 "0","#analysis the relationship between ABV and IBU and stores it into the regressor varible. "
+"0","#source(""<......Insert the local file path.....>/Beer analysis project/analysis/Analysis_of_beer.R"")"
 "0","source(""C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Analysis_of_beer.R"")"

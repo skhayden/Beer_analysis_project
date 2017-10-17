@@ -1,23 +1,33 @@
 # Presentation
 Steven Hayden, Thejas Prasad  
-October 15, 2017  
+October 16, 2017  
 
 #Introduction 
-The popularity of micro brews have exploded in the US in the past decade. There are over 5300 breweries in the US with 800 opening last year as stated in the article “U.S. Breweries Top 5,300 as Craft Beer Makers Ride Double-Digit Gains.” from NPR.  We want to know does bitterness of a beer go up as alcohol levels go up? We will use the data provide by our client and R software to conduct our analyses. 
 
-#Gathering data 
-The first R script combines the two files provide together. It does this by storing the two files as data frames and then cleaning data, so it can be joined on brewery Id. 
+  The popularity of micro brews have exploded in the US in the past decade. There are over 5300 breweries in the US with 800 opening last year as stated in the article “U.S. Breweries Top 5,300 as Craft Beer Makers Ride Double-Digit Gains.” from NPR.  We want to know does bitterness of a beer go up as alcohol levels go up? We will use the data provide by our client and R software to conduct our analyses. 
+
+#Gathering data
+
+  The first R script combines the two files provide together. It does this by storing the two files as data frames and then cleaning data, so it can be joined on brewery Id. 
 
 
 ```r
-setwd(getwd()) 
+getwd()
+```
 
+```
+## [1] "C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/Presentation"
+```
+
+```r
 #runs script to clean data and merge the data the brewery logistics and beer characteristics data together.
+#source("<......Insert the local file path.....>/Beer analysis project/analysis/Data/Beer_data_Cleaner.R")
 source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Data/Beer_data_Cleaner.R")
 ```
 
-#Data 
-The data contains current characteristics of beers and their breweries across the United States. There are 558 breweries sampled and 2410 beers associated with those breweries. R is used to clean the data, put the data into a usable format, create and store function, and present the data in a readable form. Sample of data in output below. 
+#Data
+
+  The data contains current characteristics of beers and their breweries across the United States. There are 558 breweries sampled and 2410 beers associated with those breweries. R is used to clean the data, put the data into a usable format, create and store function, and present the data in a readable form. Sample of data in output below. 
 
 ```r
 str(beer_brew_merge)
@@ -37,8 +47,7 @@ str(beer_brew_merge)
 ##  $ State       : Factor w/ 51 levels " AK"," AL"," AR",..: 24 24 24 24 24 24 18 18 18 18 ...
 ```
 
-
-The second R script is where all the analyses takes place. The median ABV and IBU by state are calculated in this scrip along with their respected max. This is where the relationship between ABV and IBU is identified as well. All these calculated objects will be later used to present the findings in a more readable way, such as graphs. 
+  The second R script is where all the analyses takes place. The median ABV and IBU by state are calculated in this scrip along with their respected max. This is where the relationship between ABV and IBU is identified as well. All these calculated objects will be later used to present the findings in a more readable way, such as graphs. 
 
 
 ```r
@@ -47,6 +56,7 @@ The second R script is where all the analyses takes place. The median ABV and IB
 #Finds the state with the maximum alcoholic (ABV) beer.
 #Finds the state with the most bitter beer (IBU).
 #analysis the relationship between ABV and IBU and stores it into the regressor varible. 
+#source("<......Insert the local file path.....>/Beer analysis project/analysis/Analysis_of_beer.R")
 source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Beer analysis project/analysis/Analysis_of_beer.R")
 ```
 
@@ -82,9 +92,21 @@ source("C:/Users/shayden/Documents/GitHub/SMU/Doing_Data_Science_1/CaseStudy/Bee
 ## Warning: package 'data.table' was built under R version 3.4.2
 ```
 
+#Data Analysis / Descriptions
+
+  During the data analysis these are some of the key statistis observed -
+The state with max alcohol content (0.128) is CO
+The state which has the most bitter beer (138) is OR
+The median ABV and IBU by state can be found in the data frame ABV_IBU_Median
+The original data set provided had some NA's in couple of columns, there were 62 NA's in ABV couln and 1005 NA's in IBU cloumn.
+
+#Alcohol Content Analysis
+
+  Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels. We had to ommit 62 NA's in this ABV column to generate the summary.
 
 
 ```r
+#Returns the summary statistics on ABV
 summary(beer_brew_merge$ABV, na.rm = TRUE)
 ```
 
@@ -93,6 +115,7 @@ summary(beer_brew_merge$ABV, na.rm = TRUE)
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
 ```
 
+  The Median ABV Graph shows that there is little variation of ABV between states. This makes scene because the alcohol concentration can only go so high without distillation. If we look at the IBU Median Graph, it shows more variation. This variation could be from the competitions between breweries trying have their own unique taste.  
 
 
 
@@ -125,22 +148,15 @@ barplot( ABV_IBU_Median$IBU_Median,col=c("red"),space = 1,
 
 ![](Beer_Presentation_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
 
-#Relationship between bitterness and alcohol
+##Analysis of Relationship between Bitterness vs Alcohol Content
+  To analyze if there is any linear correlation between bitterness and alcohol content in the beers, we performed a Linear Regression Analysis on the data set using one of the Machine Learing techniques available in R. For this analysis we created a regressor based on the bitterness and alcohol content data provided in the dataset. Then used this regressor to predict the pattern or behaviour of the relationship between bitterness and alcohol content in the beers. It was then observed that there exits a positive linear correlation between alcholol content and the bitterness, i.e as the alcholol co ntent increases the bitterness of the beer also increases. Using all the information obtained from the regression model we have visualized the linear correlationship of Bitterness vs Alcohol Content in a graphical format.
+
 
 ```r
-# 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic
-
-
-
-
-#import data
-
-
-
+# Assign beer_brew_merge to data frame df1
 df1 = data.frame(beer_brew_merge, na.rm = TRUE)
 
-
-#ggplot
+#ggplot used to generate the plots
 #install.packages("ggplot2",dependencies = TRUE)
 library(ggplot2)
 ```
@@ -162,13 +178,8 @@ ggplot() +
 
 ![](Beer_Presentation_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
-```r
-# Yes there is a linear correlation between alcholol content and the bitterness of the beer
-# as the alcholol content increases and the bitterness of the beer also increases.
-
-#----Done---
-```
 #Conclusion
+
 
 ```r
 summary(regressor)
@@ -196,7 +207,7 @@ summary(regressor)
 ## F-statistic:  1147 on 1 and 1403 DF,  p-value: < 2.2e-16
 ```
 
-The relationship between ABV and IBU is a positive linear relationship. With a T Value of 33.86  and p-value of 2.2e -6.  There is strong evidence to support that there is a positive relationship. The next question to further investigate is consumer preference. Do consumers like beer that is less bitter? If so, production time may be shorted by creating a beer with less alcohol. If you have any question or concerns, please feel free to reach out to use through our Git Hub repository. 
+  The relationship between ABV and IBU is a positive linear relationship. With a T Value of 33.86  and p-value of 2.2e -6.  There is strong evidence to support that there is a positive relationship. The next question to further investigate is consumer preference. Do consumers like beer that is less bitter? If so, production time may be shorted by creating a beer with less alcohol. If you have any question or concerns, please feel free to reach out to us through our Git Hub repository. 
 Thank you,
 Steven Hayden, Thejas Prasad
 
