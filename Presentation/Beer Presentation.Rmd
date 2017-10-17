@@ -1,7 +1,7 @@
 ---
 title: "Presentation"
 author: "Steven Hayden, Thejas Prasad"
-date: "October 15, 2017"
+date: "October 16, 2017"
 output: 
   html_document:
     keep_md: true
@@ -47,9 +47,10 @@ The median ABV and IBU by state can be found in the data frame ABV_IBU_Median
 The original data set provided had some NA's in couple of columns, there were 62 NA's in ABV couln and 1005 NA's in IBU cloumn.
 
 #Alcohol Content Analysis
-Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels.
+Based on the analysis on all beer's ABV in the data set, it has been observed that the Alcohol Content in a beer falls in the range of (0.001, 0.128). The median level of Alcohol content is 0.05600. Something interesting to note here is there exists a huge variaton between the minimum and maximum levels. We had to ommit 62 NA's in this ABV column to genrate the summary.
 
 ```{r echo=TRUE}
+#Returns the summary statistics on ABV
 summary(beer_brew_merge$ABV, na.rm = TRUE)
 ```
 
@@ -86,9 +87,10 @@ To analyze if there is any linear correlation between bitterness and alcohol con
 
 ```{r echo=TRUE}
 
+# Assign beer_brew_merge to data frame df1
 df1 = data.frame(beer_brew_merge, na.rm = TRUE)
 
-#ggplot
+#ggplot used to generate the plots
 #install.packages("ggplot2",dependencies = TRUE)
 library(ggplot2)
 
@@ -109,7 +111,7 @@ ggplot() +
 summary(regressor)
 ```
 
-The relationship between ABV and IBU is a positive linear relationship. With a T Value of 33.86  and p-value of 2.2e -6.  There is strong evidence to support that there is a positive relationship. The next question to further investigate is consumer preference. Do consumers like beer that is less bitter? If so, production time may be shorted by creating a beer with less alcohol. If you have any question or concerns, please feel free to reach out to use through our Git Hub repository. 
+The relationship between ABV and IBU is a positive linear relationship. With a T Value of 33.86  and p-value of 2.2e -6.  There is strong evidence to support that there is a positive relationship. The next question to further investigate is consumer preference. Do consumers like beer that is less bitter? If so, production time may be shorted by creating a beer with less alcohol. If you have any question or concerns, please feel free to reach out to us through our Git Hub repository. 
 Thank you,
 Steven Hayden, Thejas Prasad
 
